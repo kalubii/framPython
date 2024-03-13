@@ -1,0 +1,30 @@
+{% extends "crudapp/base.html" %}
+{% load crispy_forms_tags %} 
+
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+  
+        <form action="" method="post" autocomplete="off">
+          {% csrf_token %}
+          {{form}}
+
+          <div>
+            <button type="submit" class="btn btn-success btn-block btn-lg my-4">
+              <i class="fa-solid fa-database"></i>
+              Enregistrer
+            </button>
+          </div>
+          <div>
+            <a href="{%url 'liste'%}" class="btn btn-secondary btn-block btn-lg"> 
+              <i class="fa-solid fa-list"></i>
+              Consulter</a>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

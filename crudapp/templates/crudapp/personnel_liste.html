@@ -1,0 +1,38 @@
+{% extends "crudapp/base.html"%}
+
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>NOM</td>
+            <td>PRENOM</td>
+            <td>POSTE</td>
+            <td>
+                <a href="{% url 'personnel_insert' %}" class="btn btn-outline-success">
+                    <i class="fa-solid fa-plus"></i>
+                    Ajouter</a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {%for Personnel in personnel_liste%}
+            <tr>
+                <td>{{Personnel.nom}}</td>
+                <td>{{Personnel.prenom}}</td>
+                <td>{{Personnel.poste}}</td>
+                <td>
+                    <a href="{% url 'update' Personnel.id %}" class="btn btn-primary">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                    </a>
+                    
+                    <form action="{%url 'delete' Personnel.id%}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
